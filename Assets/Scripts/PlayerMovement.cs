@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 move;
+    public Vector2 move;
+    Animator am;
     Rigidbody2D player;
+    public static PlayerMovement instance;
     public float movespeed;
-
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        am = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     {
         move.x = Input.GetAxisRaw("Horizontal");
         move.y = Input.GetAxisRaw("Vertical");
+        if(move.sqrMagnitude > 0.01)
+        {
+            am.Play("PlayerWalking");
+        }
+        else { am.Play("playerIdle"); }
     }
     private void FixedUpdate()
     {
