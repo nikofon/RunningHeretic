@@ -3670,7 +3670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364900343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.38, y: -10.98, z: 0}
+  m_LocalPosition: {x: 2.38, y: 10.846001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1687258585}
@@ -3811,9 +3811,10 @@ GameObject:
   - component: {fileID: 737281861}
   - component: {fileID: 737281860}
   - component: {fileID: 737281865}
+  - component: {fileID: 737281866}
   m_Layer: 0
   m_Name: inquisitor
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3876,8 +3877,8 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.2
+  pickNextWaypointDist: 0
+  endReachedDistance: 0.8
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -3994,7 +3995,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44bfe73841ccf54baac90e13d05b708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looseRadius: 0.5
+  looseRadius: 0.8
+--- !u!61 &737281866
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737281858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.13273144, y: -0.072565556}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.34122467, y: 0.50918484}
+  m_EdgeRadius: 0
 --- !u!1 &876424264
 GameObject:
   m_ObjectHideFlags: 0
@@ -20329,6 +20356,7 @@ GameObject:
   - component: {fileID: 2028768446}
   - component: {fileID: 2028768448}
   - component: {fileID: 2028768447}
+  - component: {fileID: 2028768449}
   m_Layer: 0
   m_Name: MagicTorch
   m_TagString: Untagged
@@ -20344,7 +20372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028768444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.273, y: -10.195999, z: -0.56}
+  m_LocalPosition: {x: 2.273, y: 11.63, z: -0.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 124274917}
@@ -20435,4 +20463,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8faf55da4e21b4eb2e5b4519b743b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filmGrain: {fileID: 0}
+  volume: {fileID: 0}
   myMaterial: {fileID: 2100000, guid: 83128507f901d7f4d85a05126d5a5eee, type: 2}
+--- !u!58 &2028768449
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028768444}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02475667, y: -0.03960991}
+  serializedVersion: 2
+  m_Radius: 1.4754136
