@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public float torchfrequency = 1f;
     public static AudioManager instance;
+    public float torchsoundminvolume;
     public List<AudioClip> MusicClips;
     public List<AudioClip> Sounds;
     public AudioSource MusicSource;
@@ -38,7 +39,7 @@ public class AudioManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        torch.volume = Mathf.Sin(torchfrequency * Time.time);
+        torch.volume = Mathf.Clamp(Mathf.Sin(torchfrequency * Time.time)/3, torchsoundminvolume, 1f);
     }
     public void PlayDynamicMusic(float proximity)
     {
@@ -51,6 +52,7 @@ public class AudioManager : MonoBehaviour
             torch = gameObject.AddComponent<AudioSource>();
             torch.clip = Sounds.Find(x => x.name == "torchSound");
             torch.loop = true;
+            torch.Play();
         }
     }
 }

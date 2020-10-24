@@ -39,7 +39,7 @@ public class TorchMovementAndColout : MonoBehaviour
         {           
             myMaterial.SetFloat("_Multiplier", Mathf.Clamp((startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20, 1f, 20));
             prevFrequency = (startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20;
-            AudioManager.instance.torchfrequency = prevFrequency;
+            AudioManager.instance.torchfrequency = Mathf.Clamp((startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20, 1f, 20);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

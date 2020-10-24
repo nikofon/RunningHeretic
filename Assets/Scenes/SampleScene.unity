@@ -3866,7 +3866,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 1.5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -20426,6 +20426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torchfrequency: 1
+  torchsoundminvolume: 0.05
   MusicClips: []
   Sounds:
   - {fileID: 8300000, guid: 3d65ca5850abf2b4dba7387ec5d6c6ee, type: 3}
