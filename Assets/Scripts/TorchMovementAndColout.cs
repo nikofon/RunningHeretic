@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class TorchMovementAndColout : MonoBehaviour
 {
-    private float prevFrequency;
+    private float prevFrequency = 1f;
     public FilmGrain filmGrain;
     private Vector3 offset;
     public Volume volume;
@@ -20,7 +20,7 @@ public class TorchMovementAndColout : MonoBehaviour
         startingDistance = Target.instance.ReturnDistance();
         volume = GameObject.FindObjectOfType<Volume>();
         volume.profile.TryGet<FilmGrain>(out filmGrain);
-        //filmGrain.intensity.value = 1f;
+        myMaterial.SetFloat("_Multiplier", Mathf.Clamp((startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20, 1f, 20));
     }
     private void Update()
     {
@@ -36,9 +36,10 @@ public class TorchMovementAndColout : MonoBehaviour
     private void LateUpdate()
     {
         if (Mathf.Abs(prevFrequency - (startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20) > 1)
-        {
+        {           
             myMaterial.SetFloat("_Multiplier", Mathf.Clamp((startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20, 1f, 20));
             prevFrequency = (startingDistance - Target.instance.ReturnDistance()) / startingDistance * 20;
+            AudioManager.instance.torchfrequency = prevFrequency;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
