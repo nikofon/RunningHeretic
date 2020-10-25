@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class TorchMovementAndColout : MonoBehaviour
 {
+    private System.Random rand = new System.Random();
     private float prevFrequency = 1f;
     public FilmGrain filmGrain;
     private Vector3 offset;
@@ -47,6 +48,11 @@ public class TorchMovementAndColout : MonoBehaviour
         
         if (collision.gameObject.tag == "Enemy")
         {
+            if (rand.NextDouble() < 0.5d)
+            {
+                AudioManager.instance.PlaySound("caughtdist");
+            }
+            else { AudioManager.instance.PlaySound("catch2dist"); }
             StopCoroutine("ChangeIntensityWithTime");
             Debug.Log("colided");
             filmGrain.intensity.value = 1f;

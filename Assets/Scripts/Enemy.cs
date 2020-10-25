@@ -19,6 +19,6 @@ public class Enemy : MonoBehaviour
 
     private void Loose()
     {
-        Debug.Log("You loose");
+        LevelLoader.instance.LoadLooseScreen();
     }
 }

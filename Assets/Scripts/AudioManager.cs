@@ -5,6 +5,9 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public float changeValue;
+    public float[] proximityValues;
+    private float previousProximity;
     [HideInInspector]
     public float torchfrequency = 1f;
     public static AudioManager instance;
@@ -19,7 +22,6 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        CreateTorch();
     }
     public void PlaySound(string name)
     {
@@ -39,11 +41,69 @@ public class AudioManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        torch.volume = Mathf.Clamp(Mathf.Sin(torchfrequency * Time.time)/3, torchsoundminvolume, 1f);
+        if (torch != null)
+        {
+            torch.volume = Mathf.Clamp(Mathf.Sin(torchfrequency * Time.time) / 3, torchsoundminvolume, 1f);
+        }
     }
     public void PlayDynamicMusic(float proximity)
     {
-       
+       // Debug.Log(proximity);
+        if(MusicSource == null)
+        {
+            MusicSource = gameObject.AddComponent<AudioSource>();
+            MusicSource.loop = true;
+        }
+            if (!MusicSource.isPlaying)
+            {
+                if (proximity > proximityValues[0])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 0");
+                }
+                else if (proximity > proximityValues[1])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 1");
+                }
+                else if (proximity > proximityValues[2])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 2");
+                }
+                else if (proximity > proximityValues[3])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 3");
+                }
+                else if (proximity > proximityValues[4])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 4");
+                }
+            }
+            else
+            {
+                float time = MusicSource.time;
+                if (proximity > proximityValues[0])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 0");
+                }
+                else if (proximity > proximityValues[1])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 1");
+                }
+                else if (proximity > proximityValues[2])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 2");
+                }
+                else if (proximity > proximityValues[3])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 3");
+                }
+                else if (proximity > proximityValues[4])
+                {
+                    MusicSource.clip = MusicClips.Find(x => x.name == "Spooky 4");
+                }
+                MusicSource.time = time;
+            }
+            MusicSource.Play();
+        //Debug.Log(MusicSource.clip.name);
     }
     public void CreateTorch()
     {
@@ -54,5 +114,14 @@ public class AudioManager : MonoBehaviour
             torch.loop = true;
             torch.Play();
         }
+    }
+    public void PlayMusic(string name)
+    {
+        if(MusicSource == null)
+        {
+            MusicSource = gameObject.AddComponent<AudioSource>();
+            MusicSource.loop = true;
+        }
+        MusicSource.clip = MusicClips.Find(x => x.name == name);
     }
 }

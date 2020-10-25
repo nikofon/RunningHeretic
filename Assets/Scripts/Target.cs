@@ -14,7 +14,7 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ReturnDistance() < 0.1f)
+        if(ReturnDistance() < 0.4f)
         {
             Win();
         }   
@@ -22,7 +22,7 @@ public class Target : MonoBehaviour
 
     private void Win()
     {
-        Debug.Log("You win");
+        LevelLoader.instance.LoadWinScreen();
     }
 
     public float ReturnDistance()
